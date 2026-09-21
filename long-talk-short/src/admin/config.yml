@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: YOURUSERNAME/long-talk-short   # <-- CHANGE THIS to your-github-username/your-repo-name
+  repo: sylv1drom1/LongTalkShort   # <-- CHANGE THIS to your-github-username/your-repo-name
   branch: main
 
 # Where uploaded images (if you add any) are stored
