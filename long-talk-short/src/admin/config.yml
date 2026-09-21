@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------
+# Decap CMS configuration for Long Talk Short
+#
+# BEFORE THIS WORKS you must set the backend below to your own
+# GitHub repository. Change "YOURUSERNAME/long-talk-short" to the
+# actual repo you create (see README, step 2 & 4).
+# ---------------------------------------------------------------
+
+backend:
+  name: github
+  repo: YOURUSERNAME/long-talk-short   # <-- CHANGE THIS to your-github-username/your-repo-name
+  branch: main
+
+# Where uploaded images (if you add any) are stored
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+# Show a live preview link while editing
+site_url: https://longtalkshort.netlify.app
+display_url: https://longtalkshort.netlify.app
+
+collections:
+  - name: "posts"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}  ·  {{category}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Theme"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Relationships", value: "rel" }
+          - { label: "Adventure", value: "adv" }
+          - { label: "Technology", value: "tech" }
+      - { label: "Source (podcast or talk)", name: "source", widget: "string", hint: "e.g. The Diary of a CEO · Guest Name" }
+      - { label: "Read time (minutes)", name: "readtime", widget: "number", value_type: "int", default: 8, min: 1 }
+      - { label: "Publish date", name: "date", widget: "datetime" }
+      - { label: "Feature on home page (large card)", name: "featured", widget: "boolean", default: false, hint: "Turn ON for one article at a time — it becomes the big card at the top." }
+      - { label: "Card excerpt (shown on the home page)", name: "excerpt", widget: "text" }
+      - { label: "Source note (the italic intro under the title)", name: "dek", widget: "text", required: false }
+      - { label: "Article body", name: "body", widget: "markdown" }
+      - { label: "Takeaway line (the 'Long story short:' sentence)", name: "takeaway", widget: "text", required: false }
+      - { label: "Further-reading heading", name: "books_heading", widget: "string", required: false, default: "Further reading" }
+      - label: "Books (affiliate 'further reading' list)"
+        name: "books"
+        widget: "list"
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "Book title", name: "title", widget: "string" }
+          - { label: "Author", name: "author", widget: "string" }
+          - { label: "Custom link (optional)", name: "url", widget: "string", required: false, hint: "Leave blank to auto-build an Amazon search link with your affiliate tag." }

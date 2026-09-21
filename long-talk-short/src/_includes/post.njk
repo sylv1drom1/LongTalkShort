@@ -1,0 +1,41 @@
+---
+layout: base.njk
+---
+<article class="reader wrap" style="--cat:var(--{{ category }})">
+  <div class="reader-nav">
+    <a class="back" href="/">← All stories</a>
+    <span class="eyebrow" style="color:var(--{{ category }})">{{ categories[category].label }}</span>
+  </div>
+  <div class="reader-shell">
+    <h2 class="title">{{ title }}</h2>
+    {% if dek %}<p class="dek">{{ dek }}</p>{% endif %}
+    <div class="byline">
+      <span>By {{ site.author }}</span><span class="sep">|</span>
+      <span>{{ source }}</span><span class="sep">|</span>
+      <span>{{ readtime }} min read</span>
+    </div>
+    <div class="reader-body">
+      {{ content | safe }}
+
+      {% if takeaway %}<p class="kicker-line"><strong>Long story short:</strong> {{ takeaway }}</p>{% endif %}
+
+      {% if books %}
+      <div class="further">
+        <h4>{{ books_heading or "Further reading" }}</h4>
+        <ul>
+        {% for b in books %}
+          <li><a href="{% if b.url %}{{ b.url }}{% else %}https://www.amazon.com/s?k={{ b.title | urlencode }}&tag={{ site.amazon_tag }}{% endif %}" target="_blank" rel="nofollow sponsored noopener"><span class="bk">{{ b.title }}</span> <span class="by">— {{ b.author }}</span></a></li>
+        {% endfor %}
+        </ul>
+        <span class="aff">Affiliate links — a small commission supports the blog at no cost to you</span>
+      </div>
+      {% endif %}
+
+      <div class="cta-inline">
+        <span>Enjoyed {{ site.author }}'s distillation?</span>
+        <a class="btn" href="/#subscribe">Get the next one →</a>
+      </div>
+    </div>
+    <div class="reader-nav" style="border:0"><a class="back" href="/">← Back to all stories</a></div>
+  </div>
+</article>
