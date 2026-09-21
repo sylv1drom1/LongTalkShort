@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+{% if excerpt %}<meta name="description" content="{{ excerpt }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="/" aria-label="{{ site.name }} — home">
+      <h1>Long Talk <em>Short</em></h1>
+      <div class="tag">{{ site.tagline }}</div>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><span id="themeIcon">◑</span><span id="themeLabel">Dark</span></button>
+  </div>
+</header>
+
+{{ content | safe }}
+
+<div class="wrap">
+  <section class="subscribe" id="subscribe">
+    <div>
+      <h2>Get the next talk, distilled.</h2>
+      <p>One email when a new conversation goes up — the ideas worth keeping, none of the filler. No spam, unsubscribe anytime.</p>
+    </div>
+    <div>
+      <form class="sub-form" name="subscribe" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="subForm">
+        <input type="hidden" name="form-name" value="subscribe">
+        <p hidden><label>Skip this field: <input name="bot-field"></label></p>
+        <input type="email" name="email" id="subEmail" placeholder="you@email.com" required aria-label="Email address">
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <div class="sub-note" id="subNote">Delivered by {{ site.author }} · at most one email a week.</div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>{{ site.name }} — a reading room for the best long-form conversations, distilled by <strong style="color:var(--ink-soft);font-weight:700">{{ site.author }}</strong>.</span>
+    <a class="support" href="{{ site.support_url }}" target="_blank" rel="noopener">☕ Support {{ site.author }}</a>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

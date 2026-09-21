@@ -1,0 +1,12 @@
+{
+  "name": "long-talk-short",
+  "version": "1.0.0",
+  "description": "Long Talk Short — podcast conversations distilled into articles.",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

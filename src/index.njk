@@ -1,0 +1,31 @@
+---
+layout: base.njk
+permalink: /index.html
+---
+<main class="wrap">
+  <div class="toolbar">
+    <div class="chips" role="group" aria-label="Filter by theme">
+      <button class="chip" data-filter="all" aria-pressed="true">All stories</button>
+      <button class="chip" data-filter="rel" aria-pressed="false" style="--c:var(--rel)"><span class="dot"></span>Relationships</button>
+      <button class="chip" data-filter="adv" aria-pressed="false" style="--c:var(--adv)"><span class="dot"></span>Adventure</button>
+      <button class="chip" data-filter="tech" aria-pressed="false" style="--c:var(--tech)"><span class="dot"></span>Technology</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+
+  <div class="grid" id="grid">
+  {% for post in collections.post %}
+    <a class="card {% if post.data.featured %}feature{% endif %}" data-cat="{{ post.data.category }}" href="{{ post.url }}" style="--cat:var(--{{ post.data.category }})">
+      <div class="kicker">
+        <span class="eyebrow cat">{{ categories[post.data.category].label }}</span>
+        <span class="sep">·</span>
+        <span class="read">{{ post.data.readtime }} min read</span>
+      </div>
+      <h3>{{ post.data.title }}</h3>
+      <p class="excerpt">{{ post.data.excerpt }}</p>
+      <div class="source">{{ post.data.source }}</div>
+      {% if not post.data.featured %}<span class="more">Read the story →</span>{% endif %}
+    </a>
+  {% endfor %}
+  </div>
+</main>
